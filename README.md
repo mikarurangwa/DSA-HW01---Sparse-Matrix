@@ -1,10 +1,12 @@
 **Data Structures and Algorithms Assignment: Sparse Matrix Operations**
+
 Task Description
 This assignment involves reading sparse matrices from input files, performing operations (addition, subtraction, multiplication) on them via an interactive menu, and generating an output file containing the result of the selected operation.
 
 Instructions
 Directory Structure
 Organize your project files into the following structure:
+
 DSA-HW01---Sparse-Matrix/
 └── matrix
     ├── code
@@ -15,6 +17,7 @@ DSA-HW01---Sparse-Matrix/
     │   └── matrix2.txt
     └── sample_results
         └── (output files will be generated here)
+
 Steps to Execute
 Directory Setup:
 Ensure the directory structure is as shown above.
