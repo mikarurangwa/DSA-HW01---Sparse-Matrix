@@ -1,4 +1,4 @@
-Data Structures and Algorithms Assignment: Sparse Matrix Operations
+**Data Structures and Algorithms Assignment: Sparse Matrix Operations**
 Task Description
 This assignment involves reading sparse matrices from input files, performing operations (addition, subtraction, multiplication) on them via an interactive menu, and generating an output file containing the result of the selected operation.
 
@@ -42,15 +42,9 @@ Open a terminal or command prompt.
 
 Navigate to the Code Directory:
 Change your working directory to the location of main.py:
-
-bash
-Copy
 cd /DSA-HW01---Sparse-Matrix/matrix/code/src
 Execute the Script:
 Run the script using Python:
-
-bash
-Copy
 python main.py
 Follow Prompts:
 Use the interactive menu to choose your desired matrix operation. The results will be displayed on-screen and saved to the appropriate output file in the sample_results directory.
