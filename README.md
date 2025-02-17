@@ -5,9 +5,6 @@ This assignment involves reading sparse matrices from input files, performing op
 Instructions
 Directory Structure
 Organize your project files into the following structure:
-
-css
-Copy
 DSA-HW01---Sparse-Matrix/
 └── matrix
     ├── code
