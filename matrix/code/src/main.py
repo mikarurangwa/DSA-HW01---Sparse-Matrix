@@ -1,3 +1,5 @@
+import os
+
 class SparseMatrix:
     def __init__(self, file_path=None, num_rows=None, num_cols=None):
         """Initializes the sparse matrix."""
@@ -38,9 +40,7 @@ class SparseMatrix:
     
     def get_element(self, row, col):
         """Retrieves an element from the sparse matrix."""
-        if (row, col) in self.data:
-            return self.data[(row, col)]
-        return 0
+        return self.data.get((row, col), 0)
     
     def set_element(self, row, col, value):
         """Sets an element in the sparse matrix."""
@@ -48,8 +48,7 @@ class SparseMatrix:
             raise IndexError("Index out of bounds")
         
         if value == 0:
-            if (row, col) in self.data:
-                del self.data[(row, col)]
+            self.data.pop((row, col), None)
         else:
             self.data[(row, col)] = value
     
@@ -62,7 +61,8 @@ class SparseMatrix:
         keys = set(self.data.keys()).union(other.data.keys())
         
         for key in keys:
-            result.set_element(key[0], key[1], self.get_element(*key) + other.get_element(*key))
+            summed_value = self.get_element(*key) + other.get_element(*key)
+            result.set_element(key[0], key[1], summed_value)
         
         return result
     
@@ -75,7 +75,8 @@ class SparseMatrix:
         keys = set(self.data.keys()).union(other.data.keys())
         
         for key in keys:
-            result.set_element(key[0], key[1], self.get_element(*key) - other.get_element(*key))
+            diff_value = self.get_element(*key) - other.get_element(*key)
+            result.set_element(key[0], key[1], diff_value)
         
         return result
     
@@ -89,7 +90,8 @@ class SparseMatrix:
         for (i, j), value in self.data.items():
             for k in range(other.num_cols):
                 if (j, k) in other.data:
-                    result.set_element(i, k, result.get_element(i, k) + value * other.get_element(j, k))
+                    mult_value = result.get_element(i, k) + value * other.get_element(j, k)
+                    result.set_element(i, k, mult_value)
         
         return result
     
@@ -100,14 +102,22 @@ class SparseMatrix:
     
 
 def main():
-    """Main function to handle user interaction."""
-    print("Welcome to the Sparse Matrix Operations Program!")
-    file1 = input("Enter the path for the first matrix file: ")
-    file2 = input("Enter the path for the second matrix file: ")
+    # Set your directories here:
+    BASE_DIR = "/workspaces/DSA-HW01---Sparse-Matrix/matrix/code/src"
+    INPUT_DIR = "/workspaces/DSA-HW01---Sparse-Matrix/matrix/sample_inputs"
+    OUTPUT_DIR = "/workspaces/DSA-HW01---Sparse-Matrix/matrix/sample_results"
+
+    print("Base directory:", BASE_DIR)
+    print("Input directory:", INPUT_DIR)
+    print("Output directory:", OUTPUT_DIR)
+    
+    # Build the file paths from the input directory.
+    matrix1_file = os.path.join(INPUT_DIR, "matrix1.txt")
+    matrix2_file = os.path.join(INPUT_DIR, "matrix2.txt")
     
     try:
-        matrix1 = SparseMatrix(file1)
-        matrix2 = SparseMatrix(file2)
+        matrix1 = SparseMatrix(matrix1_file)
+        matrix2 = SparseMatrix(matrix2_file)
         
         while True:
             print("\nChoose an operation:")
@@ -137,6 +147,7 @@ def main():
     
     except Exception as e:
         print(f"Error: {str(e)}")
+
 
 if __name__ == "__main__":
     main()
